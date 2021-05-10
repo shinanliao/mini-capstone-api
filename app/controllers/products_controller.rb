@@ -1,16 +1,11 @@
 class ProductsController < ApplicationController
-  def show_all
+  def index
     products = Product.all
     render json: products.as_json
   end
 
-  def show_last
-    bed_product = Product.last
-    render json: bed_product.as_json
+  def show
+    product = Product.find(params[:id])
+    render json: product.as_json
   end
-
-  def show_first
-    collar_product = Product.first
-    render json: collar_product.as_json
-  end  
 end
