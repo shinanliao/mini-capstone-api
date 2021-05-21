@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   validates :inventory, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :supplier
+  has_many :orders
   has_many :images
 
   def supplier_name
