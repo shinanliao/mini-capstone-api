@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :supplier
   has_many :orders
   has_many :images
+  has_many :product_categories
 
   def supplier_name
     supplier.name
