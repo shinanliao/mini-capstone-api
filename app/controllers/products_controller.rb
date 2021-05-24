@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
     products = Product.all
     if params[:search]
@@ -40,12 +43,12 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
+    product = Product.find_by(id: params[:id])
     product.name = params[:name] || product.name
     product.price = params[:price] || product.price
     product.description = params[:description] || product.description
     product.supplier_id = params[:supplier_id] || product.supplier_id
-    product.inventory = params[:inventory] || products.inventory
+    product.inventory = params[:inventory] || product.inventory
     if product.save
       render json: product
     else
