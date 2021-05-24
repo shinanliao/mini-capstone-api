@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   has_many :orders
   has_many :images
   has_many :product_categories
+  has_many :categories, through: :product_categories
 
   def supplier_name
     supplier.name
