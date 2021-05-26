@@ -18,4 +18,10 @@ class CartedProductsController < ApplicationController
       render json: {errors: carted_product.errors.full_messages}, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    carted_product = current_user.carted_products.where(status: "carted").find(params[:id])
+    carted_product.update(status: "removed")
+    render json: {message: "Product Gone!"}
+  end
 end
