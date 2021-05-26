@@ -5,10 +5,11 @@ class Product < ApplicationRecord
   validates :inventory, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :supplier
-  has_many :orders
   has_many :images
   has_many :product_categories
   has_many :categories, through: :product_categories
+  has_many :carted_products
+  has_many :orders, through: :carted_products
 
   def supplier_name
     supplier.name
